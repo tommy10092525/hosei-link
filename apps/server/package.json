@@ -1,0 +1,37 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./constants": "./src/constants.ts"
+  },
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "lint": "eslint --max-warnings 0",
+    "check-types": "tsc --noEmit",
+    "cf-typegen": "wrangler types",
+    "seed:classes": "tsx scripts/seed-classes.ts"
+  },
+  "dependencies": {
+    "@hono/valibot-validator": "^0.6.1",
+    "better-auth": "^1.7.13",
+    "dotenv": "^17.4.2",
+    "drizzle-kit": "1.0.0-rc.4",
+    "drizzle-orm": "1.0.0-rc.4",
+    "hono": "^4.13.14",
+    "nanoid": "^5.1.16",
+    "tsx": "^4.23.15",
+    "valibot": "^1.5.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261025.1",
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^26.6.5",
+    "typescript": "5.9.2",
+    "wrangler": "^4.152.0"
+  }
+}

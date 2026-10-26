@@ -1,0 +1,208 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  /* radius-sm: 入力欄・小さなバッジ / lg: カード・投稿 / 2xl: 大きなパネル / full: ボタン・チップ */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+  --radius-4xl: 40px;
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  --color-surface: var(--surface);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-surface-raised: var(--surface-raised);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-brand: var(--brand);
+  --color-on-brand: var(--on-brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-brand-tint: var(--brand-tint);
+  --color-trust: var(--trust);
+  --color-on-trust: var(--on-trust);
+  --color-trust-strong: var(--trust-strong);
+  --color-trust-tint: var(--trust-tint);
+  --color-danger: var(--danger);
+  --color-on-danger: var(--on-danger);
+  --color-danger-strong: var(--danger-strong);
+  --color-danger-tint: var(--danger-tint);
+  --color-accent-sun: var(--accent-sun);
+  --color-accent-pink: var(--accent-pink);
+  --color-on-accent: var(--on-accent);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-scrim: var(--scrim);
+
+  --font-sans: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --shadow-card: 0 2px 8px rgba(38, 33, 28, 0.08);
+  --shadow-sheet: 0 8px 24px rgba(38, 33, 28, 0.16);
+}
+
+/*
+ * Hosei Link デザインシステム (campus) のトークン。
+ * 色は必ずここの変数経由で使い、コンポーネントに直値を書かない。
+ * shadcn/ui の変数 (--background など) はこのトークンへの別名にしてある。
+ */
+:root {
+  --surface: #ffffff;
+  --surface-sunken: #f6f4f0;
+  --surface-raised: #ffffff;
+  --ink: #26211c;
+  --ink-muted: #655d55;
+  --brand: #f58220;
+  --on-brand: #26211c;
+  --brand-strong: #a84300;
+  --brand-tint: #fff1e0;
+  --trust: #0066b3;
+  --on-trust: #ffffff;
+  --trust-strong: #004f8c;
+  --trust-tint: #eaf5fd;
+  --danger: #c23b22;
+  --on-danger: #ffffff;
+  --danger-strong: #a82e18;
+  --danger-tint: #fce9e5;
+  --accent-sun: #ffd93d;
+  --accent-pink: #ffd1eb;
+  --on-accent: #26211c;
+  --line: #e4dfd8;
+  --line-strong: #8a8178;
+  --scrim: rgba(38, 33, 28, 0.48);
+}
+
+/*
+ * 別名は参照先が切り替わる要素ごとに宣言し直さないと、:root で解決済みの値が
+ * そのまま継承されて .dark に追従しない
+ */
+:root,
+.dark {
+  --focus-ring: var(--ink);
+  --radius: 1rem;
+  --background: var(--surface);
+  --foreground: var(--ink);
+  --card: var(--surface-raised);
+  --card-foreground: var(--ink);
+  --popover: var(--surface-raised);
+  --popover-foreground: var(--ink);
+  --primary: var(--brand);
+  --primary-foreground: var(--on-brand);
+  --secondary: var(--surface-sunken);
+  --secondary-foreground: var(--ink);
+  --muted: var(--surface-sunken);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--brand-tint);
+  --accent-foreground: var(--ink);
+  --destructive: var(--danger);
+  --border: var(--line);
+  --input: var(--line-strong);
+  --ring: var(--focus-ring);
+  --chart-1: var(--brand);
+  --chart-2: var(--trust);
+  --chart-3: var(--accent-sun);
+  --chart-4: var(--accent-pink);
+  --chart-5: var(--line-strong);
+  --sidebar: var(--surface-raised);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--brand);
+  --sidebar-primary-foreground: var(--on-brand);
+  --sidebar-accent: var(--brand-tint);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--line);
+  --sidebar-ring: var(--focus-ring);
+}
+
+/* ダークテーマはアプリ用 (LP はライトで作る) */
+.dark {
+  --surface: #1b1815;
+  --surface-sunken: #141210;
+  --surface-raised: #26221e;
+  --ink: #f5f0ea;
+  --ink-muted: #b8afa5;
+  --brand: #ff9a45;
+  --on-brand: #1b1815;
+  --brand-strong: #ffb070;
+  --brand-tint: #3a2412;
+  --trust: #5bb4f2;
+  --on-trust: #0e1a24;
+  --trust-strong: #8ccbfa;
+  --trust-tint: #10283a;
+  --danger: #ff8a75;
+  --on-danger: #1b1815;
+  --danger-strong: #ffa899;
+  --danger-tint: #3f1d17;
+  --line: #3d3731;
+  --line-strong: #8f867c;
+  --scrim: rgba(0, 0, 0, 0.64);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-size: 16px;
+    line-height: 26px;
+  }
+  /* キーボードフォーカスは 3px 実線 + 2px オフセット (どの面上でも 3:1 以上) */
+  :where(a, button, input, textarea, select, [tabindex]):focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* 見出し上の英字ラベル。大文字英数字のみで、日本語は入れない */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

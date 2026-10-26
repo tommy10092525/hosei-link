@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@repo/typescript-config/vite.json",
+  "compilerOptions": {
+    // vite がバンドルするので .d.ts は出さない。有効だとサーバ側 better-auth の
+    // 推論型が内部依存の zod を名指しできず TS2742 になる
+    "declaration": false,
+    "declarationMap": false,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+  },
+  "include": ["src", "vite.config.ts", "../server/worker-configuration.d.ts"]
+}

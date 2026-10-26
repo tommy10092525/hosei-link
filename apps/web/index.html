@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="法政大学の学生専用SNS。同じ授業を登録している人とつながれます。"
+    />
+    <meta name="theme-color" content="#f58220" />
+    <!-- アイコンは icon.png (ヘッダーのロゴ) から生成したもの -->
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
+    <link rel="icon" href="/icon-192.png" type="image/png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <!--
+      OGP。クローラは JS を実行せず、hash router の # 以降もサーバに届かないので
+      全ページ共通の静的タグにしている。og:image / og:url は絶対 URL が必須なので
+      独自ドメインを直書きしている (wrangler.jsonc の routes / BASE_URL と揃えること)。
+      画像は public/ogp.png (1200x630)。
+    -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="HoseiLink" />
+    <meta property="og:title" content="HoseiLink — 法政大学の学生専用SNS" />
+    <meta
+      property="og:description"
+      content="法政大学の学生専用SNS。同じ授業を登録している人とつながれます。"
+    />
+    <meta property="og:url" content="https://hosei-link.codemates.org/" />
+    <meta property="og:image" content="https://hosei-link.codemates.org/ogp.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="HoseiLink — 同じ授業を取っている人とつながれる。" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=DM+Mono:wght@500&display=swap"
+    />
+    <title>HoseiLink</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

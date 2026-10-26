@@ -1,0 +1,22 @@
+# wrangler dev が読むローカル用の設定とシークレット。
+# このファイルをコピーして .dev.vars を作る (.dev.vars は gitignore 済み)。
+# ここに書いたキーはローカル実行時 wrangler.jsonc の vars より優先される。
+# 本番のシークレットは apps/server で: pnpm exec wrangler secret put <NAME>
+
+# 実行環境。これが "development" のときだけ dev 用の挙動になる。
+# wrangler.jsonc 側は "production" なので、このファイルが読まれないと
+# 本番扱いになり magic link のリンクも本番URLになる点に注意。
+APP_ENV="development"
+
+# ローカルでは vite の dev サーバ (:3000) が入口になる。
+# magic link のリンク先がこのURLで組み立てられる。
+BASE_URL="http://localhost:3000"
+
+# better-auth のセッション署名鍵。openssl rand -base64 32 などで生成する
+BETTER_AUTH_SECRET=""
+
+# 開発中に実際にメールを送るかどうか。
+# 既定 (未設定 or "false") ではメールを送らず、リンクを wrangler のログに出すだけ。
+# メールの到達まで確かめたいときだけ "true" にする。リンク先は BASE_URL のまま
+# (= localhost) なので、届いたメールからそのままローカルにログインできる。
+DEV_SEND_EMAIL="false"

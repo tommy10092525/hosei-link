@@ -1,0 +1,79 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+  "account_id": "a1493d56b302a2e4a067e067eca39d6f",
+	// 同じアカウントに旧 Next.js 版の Worker が "hosei-link" という名前で存在する。
+	// 上書きしてしまわないよう別名にする (D1/R2 の hoseilink-* と揃えた命名)
+	"name": "hoseilink",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-07-21",
+	"compatibility_flags": [
+		"nodejs_compat"
+	],
+	"observability": {
+		"enabled": true
+	},
+	// 独自ドメインを Worker に割り当てる。デプロイ時に DNS レコードごと作成される。
+	// BASE_URL とここが食い違うと magic link のリンク先が壊れるので必ず揃えること。
+	"routes": [
+		{
+			"pattern": "hosei-link.codemates.org",
+			"custom_domain": true
+		}
+	],
+	// ここに書くのは本番の値。ローカルでは .dev.vars の同名キーが優先されるので、
+	// dev 用の値 (BASE_URL=http://localhost:3000 など) はそちらに置いている。
+	// 機密情報はここには書かず `wrangler secret put` で渡す: BETTER_AUTH_SECRET
+	"vars": {
+		// 実行環境。ローカルは .dev.vars で "development" に上書きする。
+		// BASE_URL から推測せず明示的に持たせている
+		"APP_ENV": "production",
+		// magic link のリンク先を組み立てるのに使う。デプロイ先の公開URL。
+		// この Worker には routes で custom_domain を割り当てる
+		"BASE_URL": "https://hosei-link.codemates.org",
+		// magic link の送信元。Cloudflare Email Sending で認証済みのドメイン
+		"MAIL_FROM": "no-reply@codemates.org"
+	},
+	// Cloudflare Email Sending。API キー不要でバインディング経由で送れる。
+	// destination_address / allowed_destination_addresses は「意図的に」設定しない
+	// — magic link は任意の @stu.hosei.ac.jp 宛に送る必要があるため。
+	// ローカルでも実際にメールを飛ばしたい場合は "remote": true を足す
+	// (既定ではローカルにシミュレートされ、実送信はされない)。
+	"send_email": [
+		{
+			"name": "EMAIL"
+		}
+	],
+	// apps/web のビルド成果物を同じ Worker から配信する。
+	// これによりフロントと API が同一オリジンになり、CORS と SameSite=None が不要になる。
+	// hash router を使うので SPA フォールバックは "/" を返すだけでよい。
+	"assets": {
+		"binding": "ASSETS",
+		"directory": "../web/dist",
+		"not_found_handling": "single-page-application",
+		// 既定ではアセットが優先されるため、API パスだけ明示的に Worker を先に通す
+		"run_worker_first": [
+			"/api/*",
+			"/auth/*"
+		]
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "hoseilink-d1",
+			"database_id": "ce618c9c-8d46-4dec-9f45-6e2de9c4fc41",
+			"migrations_dir": "./drizzle",
+			// drizzle-kit は <timestamp>_<name>/migration.sql という形で出力するので
+			// wrangler 既定の "drizzle/*.sql" では拾えない
+			"migrations_pattern": "drizzle/*/migration.sql",
+      "remote": false
+		}
+	],
+	"r2_buckets": [
+		{
+			// バインディング名はJSの識別子として使うのでハイフンを含めない (env.BUCKET)
+			"binding": "BUCKET",
+			"bucket_name": "hoseilink-r2",
+      "remote": false
+		}
+	]
+}

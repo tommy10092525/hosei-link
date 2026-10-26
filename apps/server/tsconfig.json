@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@repo/typescript-config/workers.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    // wrangler がバンドルするので .d.ts は出さない。有効だと better-auth の推論型が
+    // 内部依存の zod を名指しできず TS2742 になる
+    "declaration": false,
+    "declarationMap": false,
+    "types": ["node"]
+  },
+  "include": ["src/**/*.ts", "scripts/**/*.ts", "worker-configuration.d.ts"]
+}
