@@ -120,7 +120,7 @@ magic link のみ。パスワードは持たない。
 
 ### データベース
 
-`apps/server/src/db/schema.ts` に全17テーブル。**すべてのリレーションに実 FK と
+`apps/server/src/db/schema.ts` に全18テーブル。**すべてのリレーションに実 FK と
 `onDelete: "cascade"`** を張ってあるので、削除の連鎖をアプリ側で書く必要はない。
 
 日時は `integer({ mode: "timestamp_ms" })`。チャットが createdAt 昇順で並ぶため、
@@ -192,8 +192,8 @@ apps/server/src/
   mail.ts         # Cloudflare Email Sending
   storage.ts      # R2
   constants.ts    # web からも "server/constants" で読める共有定数
-  db/schema.ts    # 全17テーブル
-  routes/         # posts, messages, classes, schedule, users, profile, social, misc
+  db/schema.ts    # 全18テーブル
+  routes/         # posts, messages, classes, departments, schedule, users, profile, social, misc
 apps/server/scripts/
   seed-classes.ts # t.json -> class/classSlot の SQL 生成
 apps/web/src/

@@ -17,7 +17,9 @@ type Tab = {
 
 /** 入力欄が画面下に固定される画面ではタブバーを出さない */
 const isThreadPath = (pathname: string) =>
-  /^\/chat\/[^/]+$/.test(pathname) || /^\/class\/[^/]+\/chat$/.test(pathname);
+  /^\/chat\/[^/]+$/.test(pathname) ||
+  /^\/class\/[^/]+\/chat$/.test(pathname) ||
+  /^\/hiroba\/[^/]+$/.test(pathname);
 
 /**
  * ログイン後の共通レイアウト。下部のタブバー (ホーム・授業・交流・マイページ) を持つ。

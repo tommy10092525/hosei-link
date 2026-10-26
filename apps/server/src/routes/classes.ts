@@ -1,4 +1,4 @@
-import { and, asc, eq, exists, inArray, like, or, sql } from "drizzle-orm";
+import { and, asc, desc, eq, exists, inArray, like, or, sql } from "drizzle-orm";
 import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
 import * as v from "valibot";
@@ -61,6 +61,10 @@ export const classesRoute = new Hono<AppEnv>()
    *
    * SQLite の LIKE は ASCII について大文字小文字を区別しない。
    * 旧実装は Postgres の ilike を使っていたが、日本語検索の挙動は変わらない。
+   *
+   * 並び順は「自分の学部の授業 → 履修者の多い授業 → 授業名」。
+   * 授業が1.3万件あるのに対して利用者は少なく、名前順だと人のいない授業ばかり
+   * 並ぶので、同じ学部の人が集まっている授業を先に見せる。
    */
   .get(
     "/",
@@ -81,6 +85,12 @@ export const classesRoute = new Hono<AppEnv>()
       const q = c.req.valid("query");
       const db = getDb(c.env);
       const conditions = [];
+
+      const [me] = await db
+        .select({ department: user.department })
+        .from(user)
+        .where(eq(user.id, c.get("user").id))
+        .limit(1);
 
       if (q.title) conditions.push(like(classes.title, `%${q.title}%`));
       if (q.teacher) conditions.push(like(classes.teacher, `%${q.teacher}%`));
@@ -103,18 +113,32 @@ export const classesRoute = new Hono<AppEnv>()
         );
       }
 
+      // 相関サブクエリ内では drizzle が列をテーブル名なしで出力し、
+      // classId = id が register 自身の id と比較されてしまうので列を明示的に修飾する
+      const registerCount = sql<number>`(select count(*) from "register" where "register"."classId" = "class"."id")`.mapWith(
+        Number,
+      );
+      // 学部未設定 (セットアップ前) なら学部の優先はかけない
+      const isMyDepartment = me?.department
+        ? sql<number>`${classes.gakubu} = ${me.department}`
+        : sql<number>`0`;
+
       const rows = await db
-        .select()
+        .select({ class: classes, registerCount })
         .from(classes)
         .where(conditions.length > 0 ? and(...conditions) : undefined)
-        .orderBy(asc(classes.title))
+        .orderBy(desc(isMyDepartment), desc(registerCount), asc(classes.title))
         .limit(PAGE_SIZE)
         .offset(q.offset);
 
-      const slots = await loadSlots(db, rows.map((row) => row.id));
+      const slots = await loadSlots(db, rows.map((row) => row.class.id));
 
       return c.json({
-        classes: rows.map((row) => ({ ...row, slots: slots.get(row.id) ?? [] })),
+        classes: rows.map((row) => ({
+          ...row.class,
+          registerCount: row.registerCount,
+          slots: slots.get(row.class.id) ?? [],
+        })),
         hasMore: rows.length === PAGE_SIZE,
       });
     },
