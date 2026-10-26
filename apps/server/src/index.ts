@@ -5,6 +5,7 @@ import { createAuth } from "./auth";
 import type { AppEnv } from "./env";
 import { requireAuth } from "./middleware";
 import { classesRoute } from "./routes/classes";
+import { departmentsRoute } from "./routes/departments";
 import { messagesRoute } from "./routes/messages";
 import { miscRoute } from "./routes/misc";
 import { postsRoute } from "./routes/posts";
@@ -39,6 +40,7 @@ const app = new Hono<AppEnv>()
   .route("/api/posts", postsRoute)
   .route("/api/messages", messagesRoute)
   .route("/api/classes", classesRoute)
+  .route("/api/departments", departmentsRoute)
   .route("/api/users", usersRoute)
   .route("/api/profile", profileRoute)
   // social / schedule / misc は /api 直下に複数のパスを生やす

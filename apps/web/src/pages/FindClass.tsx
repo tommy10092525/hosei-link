@@ -1,4 +1,4 @@
-import { BookOpen, Search } from "lucide-react";
+import { BookOpen, Search, Users } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useSearchParams } from "react-router";
 
@@ -18,6 +18,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { useClassSearch, type ClassSearchParams } from "@/hooks/useClasses";
 import { useDebounced } from "@/hooks/useDebounced";
+import { useProfile } from "@/hooks/useProfile";
 import { isScheduledSlot, slotLabel } from "@/lib/format";
 import { departments, periods, youbiList } from "server/constants";
 
@@ -88,9 +89,17 @@ export const FindClass = () => {
     ...(debounced.time !== ANY && { time: debounced.time }),
   };
 
-  // 条件が1つもないと全件になってしまうので、何か入力されるまで検索しない
+  // 条件が1つもないと全件になってしまうので、何か入力されるまで検索しない。
+  // ただし学部が分かっていれば、その学部の授業を履修者の多い順に出しておく
+  // (サーバ側の並び順がそうなっている)。人のいる授業から見つけてもらうため
   const hasQuery = Object.keys(query).length > 0;
-  const { data, isFetching } = useClassSearch(query, hasQuery);
+  const { data: profile } = useProfile();
+  const myDepartment = profile?.profile.department ?? null;
+  const showDefault = !hasQuery && myDepartment !== null;
+  const { data, isFetching } = useClassSearch(
+    showDefault ? { gakubu: myDepartment } : query,
+    hasQuery || showDefault,
+  );
 
   return (
     <>
@@ -185,7 +194,7 @@ export const FindClass = () => {
           </CardContent>
         </Card>
 
-        {!hasQuery ? (
+        {!hasQuery && !showDefault ? (
           <EmptyState icon={BookOpen}>
             授業名・教員名・曜日などを入力すると、シラバスに載っている授業から探せます。
           </EmptyState>
@@ -201,7 +210,9 @@ export const FindClass = () => {
         ) : (
           <>
             <p className="text-muted-foreground text-sm leading-[22px]" role="status">
-              {data.classes.length}件{data.hasMore && "以上"}見つかりました
+              {showDefault
+                ? `${myDepartment}の授業を、履修者の多い順に表示しています`
+                : `${data.classes.length}件${data.hasMore ? "以上" : ""}見つかりました`}
             </p>
             <ul className="space-y-3">
               {data.classes.map((item) => (
@@ -217,6 +228,12 @@ export const FindClass = () => {
                         </Badge>
                       ))}
                       {item.online && <Badge variant="tag">オンライン</Badge>}
+                      {item.registerCount > 0 && (
+                        <Badge variant="tag">
+                          <Users aria-hidden />
+                          履修者 {item.registerCount}人
+                        </Badge>
+                      )}
                     </div>
                     <h2 className="text-lg leading-[26px] font-bold">{item.title}</h2>
                     <p className="text-muted-foreground text-sm leading-[22px]">

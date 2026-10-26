@@ -372,6 +372,27 @@ export const classMessage = sqliteTable(
   (t) => [index("classMessageClassIdIdx").on(t.classId, t.createdAt)],
 );
 
+/**
+ * 学部ひろば (学部ごとのチャット)。
+ *
+ * 授業は1.3万件あり、利用者が少ないうちは同じ授業の人がほぼいない。
+ * 交流の単位を学部まで広げて、開けば誰かがいる場所を先に作るためのもの。
+ * department はユーザーの学部と同じ文字列 (constants の departmentsStrict)。
+ */
+export const departmentMessage = sqliteTable(
+  "departmentMessage",
+  {
+    id: id(),
+    department: text().notNull(),
+    userId: text()
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+    createdAt: createdAt(),
+    text: text().notNull(),
+  },
+  (t) => [index("departmentMessageDepartmentIdx").on(t.department, t.createdAt)],
+);
+
 export const classReview = sqliteTable(
   "classReview",
   {

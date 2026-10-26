@@ -6,6 +6,7 @@ import { Chat } from "@/pages/Chat";
 import { ChatList } from "@/pages/ChatList";
 import { ClassChat } from "@/pages/ClassChat";
 import { ClassDetail } from "@/pages/ClassDetail";
+import { DepartmentChat } from "@/pages/DepartmentChat";
 import { Contact } from "@/pages/Contact";
 import { FindClass } from "@/pages/FindClass";
 import { Friends } from "@/pages/Friends";
@@ -45,6 +46,7 @@ export function App() {
           <Route path="/find" element={<FindClass />} />
           <Route path="/class/:id" element={<ClassDetail />} />
           <Route path="/class/:id/chat" element={<ClassChat />} />
+          <Route path="/hiroba/:department" element={<DepartmentChat />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/contact" element={<Contact />} />
         </Route>

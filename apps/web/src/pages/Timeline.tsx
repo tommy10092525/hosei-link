@@ -2,6 +2,7 @@ import { Search, Users } from "lucide-react";
 import { Link } from "react-router";
 
 import { AppHeader } from "@/components/AppHeader";
+import { DepartmentCard } from "@/components/DepartmentCard";
 import { EmptyState, Notice } from "@/components/Notice";
 import { PostCard } from "@/components/PostCard";
 import { PostComposer } from "@/components/PostComposer";
@@ -37,6 +38,7 @@ export const Timeline = () => {
       />
 
       <div className="mx-auto max-w-2xl space-y-4 px-4 py-4">
+        <DepartmentCard />
         <PostComposer />
 
         {error && <Notice variant="error">{error.message}</Notice>}
