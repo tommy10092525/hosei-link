@@ -31,6 +31,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useProfile } from "@/hooks/useProfile";
+import { useSetupGuard } from "@/hooks/useSetupGuard";
 import { useToggleBlock, useToggleFollow, useUser } from "@/hooks/useSocial";
 import { signOut } from "@/lib/auth-client";
 import { displayName } from "@/lib/format";
@@ -82,6 +83,7 @@ export const UserProfile = () => {
   const { data, isPending, error } = useUser(id);
   const { data: me } = useProfile();
   const toggleFollow = useToggleFollow();
+  const { guard } = useSetupGuard();
   const toggleBlock = useToggleBlock();
 
   const isMe = me?.profile.id === id;
@@ -154,6 +156,7 @@ export const UserProfile = () => {
                   variant={isFollowing ? "outline" : "default"}
                   disabled={toggleFollow.isPending}
                   onClick={() =>
+                    (isFollowing || guard()) &&
                     toggleFollow.mutate(
                       { targetUserId: id, isFollowing },
                       { onError: (e) => toast.error(e.message) },

@@ -5,6 +5,7 @@ import { toast } from "sonner";
 
 import { AppHeader } from "@/components/AppHeader";
 import { EmptyState, Notice } from "@/components/Notice";
+import { SetupPrompt } from "@/components/SetupPrompt";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -28,6 +29,7 @@ import {
   useToggleRegister,
 } from "@/hooks/useClasses";
 import { useProfile } from "@/hooks/useProfile";
+import { useSetupGuard } from "@/hooks/useSetupGuard";
 import { displayName, isScheduledSlot, slotLabel, timeAgo } from "@/lib/format";
 
 /** 評価は星だけでなく数値も併記する (星は読み上げない) */
@@ -50,6 +52,7 @@ export const ClassDetail = () => {
   const { data: me } = useProfile();
   const toggleRegister = useToggleRegister();
   const submitReview = useSubmitReview(id);
+  const { needsSetup, guard } = useSetupGuard();
   const deleteReview = useDeleteReview(id);
 
   const [text, setText] = useState("");
@@ -120,6 +123,7 @@ export const ClassDetail = () => {
                 variant={data.isRegistered ? "outline" : "default"}
                 disabled={toggleRegister.isPending}
                 onClick={() =>
+                  (data.isRegistered || guard()) &&
                   toggleRegister.mutate(
                     { classId: id, isRegistered: data.isRegistered },
                     {
@@ -202,57 +206,61 @@ export const ClassDetail = () => {
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            <form
-              className="space-y-3"
-              onSubmit={(event) => {
-                event.preventDefault();
-                if (text.trim() === "") return;
-                submitReview.mutate(
-                  { text: text.trim(), rating: Number(rating) },
-                  {
-                    onSuccess: () => {
-                      setText("");
-                      toast.success("レビューを投稿しました");
+            {needsSetup ? (
+              <SetupPrompt action="レビューの投稿" />
+            ) : (
+              <form
+                className="space-y-3"
+                onSubmit={(event) => {
+                  event.preventDefault();
+                  if (text.trim() === "") return;
+                  submitReview.mutate(
+                    { text: text.trim(), rating: Number(rating) },
+                    {
+                      onSuccess: () => {
+                        setText("");
+                        toast.success("レビューを投稿しました");
+                      },
+                      onError: (e) => toast.error(e.message),
                     },
-                    onError: (e) => toast.error(e.message),
-                  },
-                );
-              }}
-            >
-              <div className="grid gap-1">
-                <Label htmlFor="review">授業の感想</Label>
-                <Textarea
-                  id="review"
-                  value={text}
-                  onChange={(event) => setText(event.target.value)}
-                  placeholder="課題の量や試験の形式など"
-                  maxLength={10000}
-                />
-                <p className="text-muted-foreground text-xs leading-[18px]">
-                  1人1件まで。もう一度投稿すると上書きされます。
-                </p>
-              </div>
-              <div className="flex items-end gap-2">
+                  );
+                }}
+              >
                 <div className="grid gap-1">
-                  <Label htmlFor="rating">評価</Label>
-                  <Select value={rating} onValueChange={setRating}>
-                    <SelectTrigger id="rating" className="w-32">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {[1, 2, 3, 4, 5].map((value) => (
-                        <SelectItem key={value} value={String(value)}>
-                          {"★".repeat(value)} {value}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <Label htmlFor="review">授業の感想</Label>
+                  <Textarea
+                    id="review"
+                    value={text}
+                    onChange={(event) => setText(event.target.value)}
+                    placeholder="課題の量や試験の形式など"
+                    maxLength={10000}
+                  />
+                  <p className="text-muted-foreground text-xs leading-[18px]">
+                    1人1件まで。もう一度投稿すると上書きされます。
+                  </p>
                 </div>
-                <Button type="submit" variant="outline" disabled={submitReview.isPending}>
-                  投稿する
-                </Button>
-              </div>
-            </form>
+                <div className="flex items-end gap-2">
+                  <div className="grid gap-1">
+                    <Label htmlFor="rating">評価</Label>
+                    <Select value={rating} onValueChange={setRating}>
+                      <SelectTrigger id="rating" className="w-32">
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {[1, 2, 3, 4, 5].map((value) => (
+                          <SelectItem key={value} value={String(value)}>
+                            {"★".repeat(value)} {value}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <Button type="submit" variant="outline" disabled={submitReview.isPending}>
+                    投稿する
+                  </Button>
+                </div>
+              </form>
+            )}
 
             {reviews.data && reviews.data.reviews.length > 0 ? (
               <ul className="divide-y border-t">

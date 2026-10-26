@@ -5,7 +5,7 @@ import * as v from "valibot";
 import { getDb } from "../db";
 import { contact } from "../db/schema";
 import type { AppEnv } from "../env";
-import { requireAuth } from "../middleware";
+import { requireAuth, requireSetup } from "../middleware";
 import { UploadError, putImage } from "../storage";
 import { validator } from "../validator";
 
@@ -20,7 +20,7 @@ export const miscRoute = new Hono<AppEnv>()
    *
    * ここではキーを返すだけで、DB への紐付けは投稿作成時に行う。
    */
-  .post("/uploads", requireAuth, async (c) => {
+  .post("/uploads", requireAuth, requireSetup, async (c) => {
     const body = await c.req.parseBody();
     const file = body["file"];
 

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router";
+import { Link, Navigate, useLocation, useNavigate } from "react-router";
 import { toast } from "sonner";
 
 import { Button } from "@/components/ui/button";
@@ -16,25 +16,29 @@ import {
 } from "@/components/ui/select";
 import { Spinner } from "@/components/ui/spinner";
 import { Switch } from "@/components/ui/switch";
-import { Textarea } from "@/components/ui/textarea";
 import { useProfile, useUpdateProfile } from "@/hooks/useProfile";
+import type { SetupState } from "@/hooks/useSetupGuard";
 import { departmentsStrict, projectName } from "server/constants";
 
 /**
  * 初回ログイン後のプロフィール設定。
  *
- * magic link で作られた直後のユーザーは name が空・学部が未設定なので、
- * ProtectedLayout がこの画面に誘導する。ここを終えるまで他の画面には進めない。
+ * magic link で作られた直後のユーザーは name が空・学部が未設定。
+ * 閲覧はこの画面を飛ばしてもできるが、投稿・いいね・フォロー・履修登録などの
+ * 操作をしようとすると useSetupGuard / SetupPrompt からここに誘導される。
+ * 誘導元の画面は location.state.from に入っていて、終わったらそこへ戻す。
+ *
+ * 入力は名前と学部だけに絞っている (学科・自己紹介はプロフィール編集で後から)。
  */
 export const ProfileSetup = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = (location.state as SetupState | null)?.from ?? "/timeline";
   const { data, isPending } = useProfile();
   const updateProfile = useUpdateProfile();
 
   const [name, setName] = useState("");
   const [department, setDepartment] = useState("");
-  const [major, setMajor] = useState("");
-  const [bio, setBio] = useState("");
   const [isPublic, setIsPublic] = useState(false);
 
   if (isPending) {
@@ -47,7 +51,7 @@ export const ProfileSetup = () => {
 
   // 設定済みの人が URL 直打ちで来た場合は戻す
   if (data && !data.needsSetup) {
-    return <Navigate to="/timeline" replace />;
+    return <Navigate to={from} replace />;
   }
 
   const submit = (event: React.FormEvent) => {
@@ -61,12 +65,10 @@ export const ProfileSetup = () => {
       {
         name: name.trim(),
         department,
-        major: major.trim() || undefined,
-        bio: bio.trim() || undefined,
         public: isPublic,
       },
       {
-        onSuccess: () => navigate("/timeline", { replace: true }),
+        onSuccess: () => navigate(from, { replace: true }),
         onError: (e) => toast.error(e.message),
       },
     );
@@ -80,7 +82,7 @@ export const ProfileSetup = () => {
           <span className="eyebrow text-brand-strong">WELCOME</span>
           <h1 className="text-2xl leading-8 font-bold">プロフィールの設定</h1>
           <p className="text-muted-foreground text-sm leading-[22px]">
-            {projectName} を使い始める前に、あなたのことを教えてください。
+            名前と学部を設定すると、{projectName} で投稿や授業のチャットができるようになります。
           </p>
         </CardHeader>
         <CardContent>
@@ -112,28 +114,6 @@ export const ProfileSetup = () => {
               </Select>
             </div>
 
-            <div className="grid gap-1">
-              <Label htmlFor="major">学科・専攻</Label>
-              <Input
-                id="major"
-                value={major}
-                onChange={(event) => setMajor(event.target.value)}
-                maxLength={255}
-                placeholder="任意"
-              />
-            </div>
-
-            <div className="grid gap-1">
-              <Label htmlFor="bio">自己紹介</Label>
-              <Textarea
-                id="bio"
-                value={bio}
-                onChange={(event) => setBio(event.target.value)}
-                maxLength={1000}
-                placeholder="任意"
-              />
-            </div>
-
             <div className="flex items-start justify-between gap-4 rounded-sm border-2 border-input p-4">
               <div className="space-y-1">
                 <Label htmlFor="public">アカウントを公開する</Label>
@@ -147,6 +127,12 @@ export const ProfileSetup = () => {
 
             <Button type="submit" className="w-full" disabled={updateProfile.isPending}>
               {updateProfile.isPending ? "保存中..." : "はじめる"}
+            </Button>
+
+            <Button variant="ghost" className="w-full" asChild>
+              <Link to={from} replace>
+                あとで設定して、先に中を見てみる
+              </Link>
             </Button>
           </form>
         </CardContent>

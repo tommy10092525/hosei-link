@@ -5,7 +5,7 @@ import * as v from "valibot";
 import { getDb } from "../db";
 import { block, message, user } from "../db/schema";
 import type { AppEnv } from "../env";
-import { requireAuth } from "../middleware";
+import { requireAuth, requireSetup } from "../middleware";
 import { int, validator } from "../validator";
 
 /**
@@ -95,6 +95,7 @@ export const messagesRoute = new Hono<AppEnv>()
   .post(
     "/",
     requireAuth,
+    requireSetup,
     validator(
       "json",
       v.object({

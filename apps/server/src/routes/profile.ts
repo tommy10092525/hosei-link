@@ -7,7 +7,7 @@ import { departmentsStrict } from "../constants";
 import { getDb } from "../db";
 import { user } from "../db/schema";
 import type { AppEnv } from "../env";
-import { requireAuth } from "../middleware";
+import { needsSetup, requireAuth } from "../middleware";
 import { UploadError, deleteImages, putImage } from "../storage";
 import { validator } from "../validator";
 
@@ -37,9 +37,7 @@ export const profileRoute = new Hono<AppEnv>()
 
     // magic link で作られた直後のユーザーは name が空で department も未設定。
     // フロントはこのフラグを見て初回セットアップ画面へ誘導する。
-    const needsSetup = profile.name.trim() === "" || profile.department === null;
-
-    return c.json({ profile, needsSetup });
+    return c.json({ profile, needsSetup: needsSetup(profile) });
   })
 
   .patch(

@@ -2,10 +2,12 @@ import { ImagePlus, X } from "lucide-react";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 
+import { SetupPrompt } from "@/components/SetupPrompt";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { useCreatePost } from "@/hooks/usePosts";
+import { useSetupGuard } from "@/hooks/useSetupGuard";
 import { uploadPostImage } from "@/lib/upload";
 
 const MAX_IMAGES = 4;
@@ -24,6 +26,7 @@ type Props = {
  */
 export const PostComposer = ({ parentPostId, placeholder = "いまどうしてる？" }: Props) => {
   const createPost = useCreatePost();
+  const { needsSetup } = useSetupGuard();
   const fileInput = useRef<HTMLInputElement>(null);
   const [content, setContent] = useState("");
   const [imageKeys, setImageKeys] = useState<string[]>([]);
@@ -67,6 +70,10 @@ export const PostComposer = ({ parentPostId, placeholder = "いまどうして�
       },
     );
   };
+
+  if (needsSetup) {
+    return <SetupPrompt action={parentPostId ? "返信" : "投稿"} />;
+  }
 
   return (
     <Card>

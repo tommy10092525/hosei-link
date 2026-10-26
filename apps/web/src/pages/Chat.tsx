@@ -5,12 +5,14 @@ import { toast } from "sonner";
 
 import { AppHeader } from "@/components/AppHeader";
 import { EmptyState } from "@/components/Notice";
+import { SetupPrompt } from "@/components/SetupPrompt";
 import { UserAvatar } from "@/components/UserAvatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useSendMessage, useThread } from "@/hooks/useMessages";
 import { useProfile } from "@/hooks/useProfile";
+import { useSetupGuard } from "@/hooks/useSetupGuard";
 import { useUser } from "@/hooks/useSocial";
 import { displayName, timeOfDay } from "@/lib/format";
 import { cn } from "@/lib/utils";
@@ -27,6 +29,7 @@ export const Chat = () => {
   const sendMessage = useSendMessage(id);
   const [content, setContent] = useState("");
   const bottomRef = useRef<HTMLDivElement>(null);
+  const { needsSetup } = useSetupGuard();
 
   const messages = data?.messages ?? [];
 
@@ -113,25 +116,33 @@ export const Chat = () => {
         </div>
       </div>
 
-      <form
-        className="bg-card border-t pb-[env(safe-area-inset-bottom)]"
-        onSubmit={submit}
-      >
-        <div className="mx-auto flex max-w-2xl items-center gap-2 px-4 py-3">
-          <Input
-            aria-label="メッセージ"
-            value={content}
-            onChange={(event) => setContent(event.target.value)}
-            placeholder="メッセージを入力"
-            maxLength={10000}
-            className="bg-muted rounded-full"
-          />
-          <Button type="submit" size="icon" disabled={sendMessage.isPending}>
-            <Send />
-            <span className="sr-only">送信</span>
-          </Button>
+      {needsSetup ? (
+        <div className="bg-card border-t pb-[env(safe-area-inset-bottom)]">
+          <div className="mx-auto max-w-2xl px-4 py-3">
+            <SetupPrompt action="メッセージの送信" />
+          </div>
         </div>
-      </form>
+      ) : (
+        <form
+          className="bg-card border-t pb-[env(safe-area-inset-bottom)]"
+          onSubmit={submit}
+        >
+          <div className="mx-auto flex max-w-2xl items-center gap-2 px-4 py-3">
+            <Input
+              aria-label="メッセージ"
+              value={content}
+              onChange={(event) => setContent(event.target.value)}
+              placeholder="メッセージを入力"
+              maxLength={10000}
+              className="bg-muted rounded-full"
+            />
+            <Button type="submit" size="icon" disabled={sendMessage.isPending}>
+              <Send />
+              <span className="sr-only">送信</span>
+            </Button>
+          </div>
+        </form>
+      )}
     </div>
   );
 };
