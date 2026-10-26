@@ -55,6 +55,7 @@ export const createAuth = (env: Bindings) =>
         bio: { type: "string", required: false, input: false },
         avatarKey: { type: "string", required: false, input: false },
         lastScheduleViewAt: { type: "date", required: false, input: false },
+        weeklyDigest: { type: "boolean", required: false, defaultValue: true, input: false },
       },
     },
 

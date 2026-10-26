@@ -1,0 +1,1 @@
+ALTER TABLE `user` ADD `weeklyDigest` integer DEFAULT true NOT NULL;

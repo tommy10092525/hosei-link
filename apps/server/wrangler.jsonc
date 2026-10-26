@@ -33,6 +33,11 @@
 		// magic link の送信元。Cloudflare Email Sending で認証済みのドメイン
 		"MAIL_FROM": "no-reply@codemates.org"
 	},
+	// 週1回の新着まとめメール (src/digest.ts)。cron は UTC なので
+	// 「月曜 0:00 UTC」= 月曜 9:00 JST
+	"triggers": {
+		"crons": ["0 0 * * 1"]
+	},
 	// Cloudflare Email Sending。API キー不要でバインディング経由で送れる。
 	// destination_address / allowed_destination_addresses は「意図的に」設定しない
 	// — magic link は任意の @stu.hosei.ac.jp 宛に送る必要があるため。

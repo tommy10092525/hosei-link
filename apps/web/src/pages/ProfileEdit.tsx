@@ -35,6 +35,7 @@ export const ProfileEdit = () => {
   const [major, setMajor] = useState("");
   const [bio, setBio] = useState("");
   const [isPublic, setIsPublic] = useState(false);
+  const [weeklyDigest, setWeeklyDigest] = useState(true);
   const [uploading, setUploading] = useState(false);
 
   // 取得できたら一度だけフォームに流し込む
@@ -45,6 +46,7 @@ export const ProfileEdit = () => {
     setMajor(data.profile.major ?? "");
     setBio(data.profile.bio ?? "");
     setIsPublic(data.profile.public);
+    setWeeklyDigest(data.profile.weeklyDigest);
   }, [data]);
 
   const changeAvatar = async (file: File | undefined) => {
@@ -71,6 +73,7 @@ export const ProfileEdit = () => {
         major: major.trim(),
         bio: bio.trim(),
         public: isPublic,
+        weeklyDigest,
       },
       {
         onSuccess: () => toast.success("プロフィールを更新しました"),
@@ -182,6 +185,20 @@ export const ProfileEdit = () => {
                 </p>
               </div>
               <Switch id="public" checked={isPublic} onCheckedChange={setIsPublic} />
+            </div>
+
+            <div className="flex items-start justify-between gap-4 rounded-sm border-2 border-input p-4">
+              <div className="space-y-1">
+                <Label htmlFor="weeklyDigest">週1回のお知らせメール</Label>
+                <p className="text-muted-foreground text-xs leading-[18px]">
+                  学部ひろばや履修中の授業に新着があった週だけ、月曜の朝にまとめて届きます。
+                </p>
+              </div>
+              <Switch
+                id="weeklyDigest"
+                checked={weeklyDigest}
+                onCheckedChange={setWeeklyDigest}
+              />
             </div>
 
             <Button type="submit" className="w-full" disabled={updateProfile.isPending}>

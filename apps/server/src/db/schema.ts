@@ -54,6 +54,8 @@ export const user = sqliteTable("user", {
   avatarKey: text(),
   /** 時間割ページを最後に開いた時刻。授業チャットの未読バッジ算出に使う */
   lastScheduleViewAt: timestamp(),
+  /** 週1回の新着まとめメールを受け取るか。プロフィール編集から止められる */
+  weeklyDigest: integer({ mode: "boolean" }).notNull().default(true),
 });
 
 export const session = sqliteTable(

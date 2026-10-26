@@ -26,6 +26,7 @@ export const profileRoute = new Hono<AppEnv>()
         bio: user.bio,
         avatarKey: user.avatarKey,
         public: user.public,
+        weeklyDigest: user.weeklyDigest,
       })
       .from(user)
       .where(eq(user.id, me))
@@ -52,6 +53,7 @@ export const profileRoute = new Hono<AppEnv>()
         major: v.optional(v.pipe(v.string(), v.maxLength(255))),
         bio: v.optional(v.pipe(v.string(), v.maxLength(1000))),
         public: v.optional(v.boolean()),
+        weeklyDigest: v.optional(v.boolean()),
       }),
     ),
     async (c) => {

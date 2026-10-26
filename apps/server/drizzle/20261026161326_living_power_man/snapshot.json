@@ -1,0 +1,2282 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "id": "45332bdd-3d61-412e-ac91-86e735dd98aa",
+  "prevIds": [
+    "de235659-7293-4a27-bc55-735a743cbd79"
+  ],
+  "ddl": [
+    {
+      "name": "account",
+      "entityType": "tables"
+    },
+    {
+      "name": "block",
+      "entityType": "tables"
+    },
+    {
+      "name": "classMessage",
+      "entityType": "tables"
+    },
+    {
+      "name": "classReview",
+      "entityType": "tables"
+    },
+    {
+      "name": "classSlot",
+      "entityType": "tables"
+    },
+    {
+      "name": "class",
+      "entityType": "tables"
+    },
+    {
+      "name": "contact",
+      "entityType": "tables"
+    },
+    {
+      "name": "departmentMessage",
+      "entityType": "tables"
+    },
+    {
+      "name": "follow",
+      "entityType": "tables"
+    },
+    {
+      "name": "message",
+      "entityType": "tables"
+    },
+    {
+      "name": "messageImage",
+      "entityType": "tables"
+    },
+    {
+      "name": "post",
+      "entityType": "tables"
+    },
+    {
+      "name": "postImage",
+      "entityType": "tables"
+    },
+    {
+      "name": "reaction",
+      "entityType": "tables"
+    },
+    {
+      "name": "register",
+      "entityType": "tables"
+    },
+    {
+      "name": "report",
+      "entityType": "tables"
+    },
+    {
+      "name": "session",
+      "entityType": "tables"
+    },
+    {
+      "name": "user",
+      "entityType": "tables"
+    },
+    {
+      "name": "verification",
+      "entityType": "tables"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "account"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "accountId",
+      "entityType": "columns",
+      "table": "account"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "providerId",
+      "entityType": "columns",
+      "table": "account"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "userId",
+      "entityType": "columns",
+      "table": "account"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "accessToken",
+      "entityType": "columns",
+      "table": "account"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "refreshToken",
+      "entityType": "columns",
+      "table": "account"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "idToken",
+      "entityType": "columns",
+      "table": "account"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "accessTokenExpiresAt",
+      "entityType": "columns",
+      "table": "account"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "refreshTokenExpiresAt",
+      "entityType": "columns",
+      "table": "account"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "scope",
+      "entityType": "columns",
+      "table": "account"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "password",
+      "entityType": "columns",
+      "table": "account"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "table": "account"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "updatedAt",
+      "entityType": "columns",
+      "table": "account"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "block"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "blocker",
+      "entityType": "columns",
+      "table": "block"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "blocked",
+      "entityType": "columns",
+      "table": "block"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "table": "block"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "classMessage"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "classId",
+      "entityType": "columns",
+      "table": "classMessage"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "userId",
+      "entityType": "columns",
+      "table": "classMessage"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "table": "classMessage"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "text",
+      "entityType": "columns",
+      "table": "classMessage"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "classReview"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "classId",
+      "entityType": "columns",
+      "table": "classReview"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "userId",
+      "entityType": "columns",
+      "table": "classReview"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "table": "classReview"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "text",
+      "entityType": "columns",
+      "table": "classReview"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "rating",
+      "entityType": "columns",
+      "table": "classReview"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "classSlot"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "classId",
+      "entityType": "columns",
+      "table": "classSlot"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "youbi",
+      "entityType": "columns",
+      "table": "classSlot"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "time",
+      "entityType": "columns",
+      "table": "classSlot"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "class"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "title",
+      "entityType": "columns",
+      "table": "class"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "code",
+      "entityType": "columns",
+      "table": "class"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "url",
+      "entityType": "columns",
+      "table": "class"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "place",
+      "entityType": "columns",
+      "table": "class"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "teacher",
+      "entityType": "columns",
+      "table": "class"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "gakubu",
+      "entityType": "columns",
+      "table": "class"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "timeInnerHTML",
+      "entityType": "columns",
+      "table": "class"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "nendo",
+      "entityType": "columns",
+      "table": "class"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": "false",
+      "generated": null,
+      "name": "online",
+      "entityType": "columns",
+      "table": "class"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "contact"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "title",
+      "entityType": "columns",
+      "table": "contact"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "content",
+      "entityType": "columns",
+      "table": "contact"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "table": "contact"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "departmentMessage"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "department",
+      "entityType": "columns",
+      "table": "departmentMessage"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "userId",
+      "entityType": "columns",
+      "table": "departmentMessage"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "table": "departmentMessage"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "text",
+      "entityType": "columns",
+      "table": "departmentMessage"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "follow"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "followedId",
+      "entityType": "columns",
+      "table": "follow"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "followingId",
+      "entityType": "columns",
+      "table": "follow"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "table": "follow"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "message"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "fromUserId",
+      "entityType": "columns",
+      "table": "message"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "toUserId",
+      "entityType": "columns",
+      "table": "message"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "content",
+      "entityType": "columns",
+      "table": "message"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "table": "message"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": "false",
+      "generated": null,
+      "name": "isRead",
+      "entityType": "columns",
+      "table": "message"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "messageImage"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "key",
+      "entityType": "columns",
+      "table": "messageImage"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "messageId",
+      "entityType": "columns",
+      "table": "messageImage"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "post"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "userId",
+      "entityType": "columns",
+      "table": "post"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "content",
+      "entityType": "columns",
+      "table": "post"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "table": "post"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "parentPostId",
+      "entityType": "columns",
+      "table": "post"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "postImage"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "key",
+      "entityType": "columns",
+      "table": "postImage"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "postId",
+      "entityType": "columns",
+      "table": "postImage"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "reaction"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "postId",
+      "entityType": "columns",
+      "table": "reaction"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "userId",
+      "entityType": "columns",
+      "table": "reaction"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": "'like'",
+      "generated": null,
+      "name": "type",
+      "entityType": "columns",
+      "table": "reaction"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "table": "reaction"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "register"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "classId",
+      "entityType": "columns",
+      "table": "register"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "userId",
+      "entityType": "columns",
+      "table": "register"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "table": "register"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "lastViewedAt",
+      "entityType": "columns",
+      "table": "register"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "report"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "postId",
+      "entityType": "columns",
+      "table": "report"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "userId",
+      "entityType": "columns",
+      "table": "report"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "text",
+      "entityType": "columns",
+      "table": "report"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "table": "report"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "session"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "expiresAt",
+      "entityType": "columns",
+      "table": "session"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "token",
+      "entityType": "columns",
+      "table": "session"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "table": "session"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "updatedAt",
+      "entityType": "columns",
+      "table": "session"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "ipAddress",
+      "entityType": "columns",
+      "table": "session"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "userAgent",
+      "entityType": "columns",
+      "table": "session"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "userId",
+      "entityType": "columns",
+      "table": "session"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "user"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "name",
+      "entityType": "columns",
+      "table": "user"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "email",
+      "entityType": "columns",
+      "table": "user"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": "false",
+      "generated": null,
+      "name": "emailVerified",
+      "entityType": "columns",
+      "table": "user"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "image",
+      "entityType": "columns",
+      "table": "user"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "table": "user"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "updatedAt",
+      "entityType": "columns",
+      "table": "user"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "department",
+      "entityType": "columns",
+      "table": "user"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "major",
+      "entityType": "columns",
+      "table": "user"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": "false",
+      "generated": null,
+      "name": "public",
+      "entityType": "columns",
+      "table": "user"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "bio",
+      "entityType": "columns",
+      "table": "user"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "avatarKey",
+      "entityType": "columns",
+      "table": "user"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "lastScheduleViewAt",
+      "entityType": "columns",
+      "table": "user"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": "true",
+      "generated": null,
+      "name": "weeklyDigest",
+      "entityType": "columns",
+      "table": "user"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "verification"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "identifier",
+      "entityType": "columns",
+      "table": "verification"
+    },
+    {
+      "type": "text",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "value",
+      "entityType": "columns",
+      "table": "verification"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "expiresAt",
+      "entityType": "columns",
+      "table": "verification"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "createdAt",
+      "entityType": "columns",
+      "table": "verification"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "updatedAt",
+      "entityType": "columns",
+      "table": "verification"
+    },
+    {
+      "columns": [
+        "userId"
+      ],
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_account_userId_user_id_fk",
+      "entityType": "fks",
+      "table": "account"
+    },
+    {
+      "columns": [
+        "blocker"
+      ],
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_block_blocker_user_id_fk",
+      "entityType": "fks",
+      "table": "block"
+    },
+    {
+      "columns": [
+        "blocked"
+      ],
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_block_blocked_user_id_fk",
+      "entityType": "fks",
+      "table": "block"
+    },
+    {
+      "columns": [
+        "classId"
+      ],
+      "tableTo": "class",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_classMessage_classId_class_id_fk",
+      "entityType": "fks",
+      "table": "classMessage"
+    },
+    {
+      "columns": [
+        "userId"
+      ],
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_classMessage_userId_user_id_fk",
+      "entityType": "fks",
+      "table": "classMessage"
+    },
+    {
+      "columns": [
+        "classId"
+      ],
+      "tableTo": "class",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_classReview_classId_class_id_fk",
+      "entityType": "fks",
+      "table": "classReview"
+    },
+    {
+      "columns": [
+        "userId"
+      ],
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_classReview_userId_user_id_fk",
+      "entityType": "fks",
+      "table": "classReview"
+    },
+    {
+      "columns": [
+        "classId"
+      ],
+      "tableTo": "class",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_classSlot_classId_class_id_fk",
+      "entityType": "fks",
+      "table": "classSlot"
+    },
+    {
+      "columns": [
+        "userId"
+      ],
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_departmentMessage_userId_user_id_fk",
+      "entityType": "fks",
+      "table": "departmentMessage"
+    },
+    {
+      "columns": [
+        "followedId"
+      ],
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_follow_followedId_user_id_fk",
+      "entityType": "fks",
+      "table": "follow"
+    },
+    {
+      "columns": [
+        "followingId"
+      ],
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_follow_followingId_user_id_fk",
+      "entityType": "fks",
+      "table": "follow"
+    },
+    {
+      "columns": [
+        "fromUserId"
+      ],
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_message_fromUserId_user_id_fk",
+      "entityType": "fks",
+      "table": "message"
+    },
+    {
+      "columns": [
+        "toUserId"
+      ],
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_message_toUserId_user_id_fk",
+      "entityType": "fks",
+      "table": "message"
+    },
+    {
+      "columns": [
+        "messageId"
+      ],
+      "tableTo": "message",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_messageImage_messageId_message_id_fk",
+      "entityType": "fks",
+      "table": "messageImage"
+    },
+    {
+      "columns": [
+        "userId"
+      ],
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_post_userId_user_id_fk",
+      "entityType": "fks",
+      "table": "post"
+    },
+    {
+      "columns": [
+        "parentPostId"
+      ],
+      "tableTo": "post",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": true,
+      "name": "postParentFk",
+      "entityType": "fks",
+      "table": "post"
+    },
+    {
+      "columns": [
+        "postId"
+      ],
+      "tableTo": "post",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_postImage_postId_post_id_fk",
+      "entityType": "fks",
+      "table": "postImage"
+    },
+    {
+      "columns": [
+        "postId"
+      ],
+      "tableTo": "post",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_reaction_postId_post_id_fk",
+      "entityType": "fks",
+      "table": "reaction"
+    },
+    {
+      "columns": [
+        "userId"
+      ],
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_reaction_userId_user_id_fk",
+      "entityType": "fks",
+      "table": "reaction"
+    },
+    {
+      "columns": [
+        "classId"
+      ],
+      "tableTo": "class",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_register_classId_class_id_fk",
+      "entityType": "fks",
+      "table": "register"
+    },
+    {
+      "columns": [
+        "userId"
+      ],
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_register_userId_user_id_fk",
+      "entityType": "fks",
+      "table": "register"
+    },
+    {
+      "columns": [
+        "postId"
+      ],
+      "tableTo": "post",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_report_postId_post_id_fk",
+      "entityType": "fks",
+      "table": "report"
+    },
+    {
+      "columns": [
+        "userId"
+      ],
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_report_userId_user_id_fk",
+      "entityType": "fks",
+      "table": "report"
+    },
+    {
+      "columns": [
+        "userId"
+      ],
+      "tableTo": "user",
+      "columnsTo": [
+        "id"
+      ],
+      "onUpdate": "NO ACTION",
+      "onDelete": "CASCADE",
+      "nameExplicit": false,
+      "name": "fk_session_userId_user_id_fk",
+      "entityType": "fks",
+      "table": "session"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "account_pk",
+      "table": "account",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "block_pk",
+      "table": "block",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "classMessage_pk",
+      "table": "classMessage",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "classReview_pk",
+      "table": "classReview",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "classSlot_pk",
+      "table": "classSlot",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "class_pk",
+      "table": "class",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "contact_pk",
+      "table": "contact",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "departmentMessage_pk",
+      "table": "departmentMessage",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "follow_pk",
+      "table": "follow",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "message_pk",
+      "table": "message",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "messageImage_pk",
+      "table": "messageImage",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "post_pk",
+      "table": "post",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "postImage_pk",
+      "table": "postImage",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "reaction_pk",
+      "table": "reaction",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "register_pk",
+      "table": "register",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "report_pk",
+      "table": "report",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "session_pk",
+      "table": "session",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "user_pk",
+      "table": "user",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        "id"
+      ],
+      "nameExplicit": false,
+      "name": "verification_pk",
+      "table": "verification",
+      "entityType": "pks"
+    },
+    {
+      "columns": [
+        {
+          "value": "userId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "accountUserIdIdx",
+      "entityType": "indexes",
+      "table": "account"
+    },
+    {
+      "columns": [
+        {
+          "value": "blocker",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "blockBlockerIdx",
+      "entityType": "indexes",
+      "table": "block"
+    },
+    {
+      "columns": [
+        {
+          "value": "blocker",
+          "isExpression": false
+        },
+        {
+          "value": "blocked",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "origin": "manual",
+      "name": "blockPairUniq",
+      "entityType": "indexes",
+      "table": "block"
+    },
+    {
+      "columns": [
+        {
+          "value": "classId",
+          "isExpression": false
+        },
+        {
+          "value": "createdAt",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "classMessageClassIdIdx",
+      "entityType": "indexes",
+      "table": "classMessage"
+    },
+    {
+      "columns": [
+        {
+          "value": "classId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "classReviewClassIdIdx",
+      "entityType": "indexes",
+      "table": "classReview"
+    },
+    {
+      "columns": [
+        {
+          "value": "classId",
+          "isExpression": false
+        },
+        {
+          "value": "userId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "origin": "manual",
+      "name": "classReviewPairUniq",
+      "entityType": "indexes",
+      "table": "classReview"
+    },
+    {
+      "columns": [
+        {
+          "value": "classId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "classSlotClassIdIdx",
+      "entityType": "indexes",
+      "table": "classSlot"
+    },
+    {
+      "columns": [
+        {
+          "value": "youbi",
+          "isExpression": false
+        },
+        {
+          "value": "time",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "classSlotSlotIdx",
+      "entityType": "indexes",
+      "table": "classSlot"
+    },
+    {
+      "columns": [
+        {
+          "value": "classId",
+          "isExpression": false
+        },
+        {
+          "value": "youbi",
+          "isExpression": false
+        },
+        {
+          "value": "time",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "origin": "manual",
+      "name": "classSlotUniq",
+      "entityType": "indexes",
+      "table": "classSlot"
+    },
+    {
+      "columns": [
+        {
+          "value": "gakubu",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "classGakubuIdx",
+      "entityType": "indexes",
+      "table": "class"
+    },
+    {
+      "columns": [
+        {
+          "value": "title",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "classTitleIdx",
+      "entityType": "indexes",
+      "table": "class"
+    },
+    {
+      "columns": [
+        {
+          "value": "teacher",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "classTeacherIdx",
+      "entityType": "indexes",
+      "table": "class"
+    },
+    {
+      "columns": [
+        {
+          "value": "department",
+          "isExpression": false
+        },
+        {
+          "value": "createdAt",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "departmentMessageDepartmentIdx",
+      "entityType": "indexes",
+      "table": "departmentMessage"
+    },
+    {
+      "columns": [
+        {
+          "value": "followedId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "followFollowedIdx",
+      "entityType": "indexes",
+      "table": "follow"
+    },
+    {
+      "columns": [
+        {
+          "value": "followingId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "followFollowingIdx",
+      "entityType": "indexes",
+      "table": "follow"
+    },
+    {
+      "columns": [
+        {
+          "value": "followedId",
+          "isExpression": false
+        },
+        {
+          "value": "followingId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "origin": "manual",
+      "name": "followPairUniq",
+      "entityType": "indexes",
+      "table": "follow"
+    },
+    {
+      "columns": [
+        {
+          "value": "fromUserId",
+          "isExpression": false
+        },
+        {
+          "value": "toUserId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "messagePairIdx",
+      "entityType": "indexes",
+      "table": "message"
+    },
+    {
+      "columns": [
+        {
+          "value": "toUserId",
+          "isExpression": false
+        },
+        {
+          "value": "isRead",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "messageUnreadIdx",
+      "entityType": "indexes",
+      "table": "message"
+    },
+    {
+      "columns": [
+        {
+          "value": "messageId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "messageImageMessageIdIdx",
+      "entityType": "indexes",
+      "table": "messageImage"
+    },
+    {
+      "columns": [
+        {
+          "value": "userId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "postUserIdIdx",
+      "entityType": "indexes",
+      "table": "post"
+    },
+    {
+      "columns": [
+        {
+          "value": "createdAt",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "postCreatedAtIdx",
+      "entityType": "indexes",
+      "table": "post"
+    },
+    {
+      "columns": [
+        {
+          "value": "parentPostId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "postParentIdx",
+      "entityType": "indexes",
+      "table": "post"
+    },
+    {
+      "columns": [
+        {
+          "value": "postId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "postImagePostIdIdx",
+      "entityType": "indexes",
+      "table": "postImage"
+    },
+    {
+      "columns": [
+        {
+          "value": "postId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "reactionPostIdIdx",
+      "entityType": "indexes",
+      "table": "reaction"
+    },
+    {
+      "columns": [
+        {
+          "value": "userId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "reactionUserIdIdx",
+      "entityType": "indexes",
+      "table": "reaction"
+    },
+    {
+      "columns": [
+        {
+          "value": "postId",
+          "isExpression": false
+        },
+        {
+          "value": "userId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "origin": "manual",
+      "name": "reactionPostUserUniq",
+      "entityType": "indexes",
+      "table": "reaction"
+    },
+    {
+      "columns": [
+        {
+          "value": "classId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "registerClassIdIdx",
+      "entityType": "indexes",
+      "table": "register"
+    },
+    {
+      "columns": [
+        {
+          "value": "userId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "registerUserIdIdx",
+      "entityType": "indexes",
+      "table": "register"
+    },
+    {
+      "columns": [
+        {
+          "value": "classId",
+          "isExpression": false
+        },
+        {
+          "value": "userId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": true,
+      "where": null,
+      "origin": "manual",
+      "name": "registerPairUniq",
+      "entityType": "indexes",
+      "table": "register"
+    },
+    {
+      "columns": [
+        {
+          "value": "postId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "reportPostIdIdx",
+      "entityType": "indexes",
+      "table": "report"
+    },
+    {
+      "columns": [
+        {
+          "value": "userId",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "sessionUserIdIdx",
+      "entityType": "indexes",
+      "table": "session"
+    },
+    {
+      "columns": [
+        {
+          "value": "identifier",
+          "isExpression": false
+        }
+      ],
+      "isUnique": false,
+      "where": null,
+      "origin": "manual",
+      "name": "verificationIdentifierIdx",
+      "entityType": "indexes",
+      "table": "verification"
+    },
+    {
+      "columns": [
+        "token"
+      ],
+      "nameExplicit": false,
+      "name": "session_token_unique",
+      "entityType": "uniques",
+      "table": "session"
+    },
+    {
+      "columns": [
+        "email"
+      ],
+      "nameExplicit": false,
+      "name": "user_email_unique",
+      "entityType": "uniques",
+      "table": "user"
+    }
+  ],
+  "renames": []
+}
