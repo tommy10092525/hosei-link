@@ -118,6 +118,15 @@ magic link のみ。パスワードは持たない。
   到達まで確かめたいときは `.dev.vars` の `DEV_SEND_EMAIL="true"`
   (リンク先は localhost のままなので、届いたメールからローカルにログインできる)
 
+### 週1回の新着まとめメール
+
+`src/digest.ts`。wrangler.jsonc の `triggers.crons` (月曜 0:00 UTC = 9:00 JST) から
+`index.ts` の `scheduled` 経由で呼ばれる。学部ひろば・履修中の授業・タイムラインに
+新着がある人にだけ送り、何もない週は送らない。`user.weeklyDigest` が false の人
+(プロフィール編集で停止できる) は対象外。magic link と同じく、開発中は既定で
+実送信せずログに出すだけ。ローカルで試すには `wrangler dev --test-scheduled` を起動して
+`curl "localhost:8787/cdn-cgi/handler/scheduled?cron=0+0+*+*+1"`。
+
 ### データベース
 
 `apps/server/src/db/schema.ts` に全18テーブル。**すべてのリレーションに実 FK と
@@ -190,6 +199,7 @@ apps/server/src/
   middleware.ts   # requireAuth
   validator.ts    # zValidator のラッパー（RPC の型を保つ）
   mail.ts         # Cloudflare Email Sending
+  digest.ts       # 週1回の新着まとめメール (wrangler.jsonc の cron から scheduled で呼ばれる)
   storage.ts      # R2
   constants.ts    # web からも "server/constants" で読める共有定数
   db/schema.ts    # 全18テーブル

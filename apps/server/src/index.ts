@@ -2,7 +2,8 @@ import { Hono } from "hono";
 import { HTTPException } from "hono/http-exception";
 
 import { createAuth } from "./auth";
-import type { AppEnv } from "./env";
+import { sendWeeklyDigests } from "./digest";
+import type { AppEnv, Bindings } from "./env";
 import { requireAuth } from "./middleware";
 import { classesRoute } from "./routes/classes";
 import { departmentsRoute } from "./routes/departments";
@@ -58,4 +59,10 @@ app.onError((err, c) => {
 
 export type AppType = typeof app;
 
-export default app;
+export default {
+  fetch: app.fetch,
+  /** wrangler.jsonc の triggers.crons。週1回の新着まとめメール */
+  scheduled: (_controller, env, ctx) => {
+    ctx.waitUntil(sendWeeklyDigests(env));
+  },
+} satisfies ExportedHandler<Bindings>;

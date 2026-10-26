@@ -31,6 +31,7 @@ export const useUpdateProfile = () => {
       major?: string;
       bio?: string;
       public?: boolean;
+      weeklyDigest?: boolean;
     }) => {
       const res = await client.api.profile.$patch({
         // department はサーバ側で enum 検証される
