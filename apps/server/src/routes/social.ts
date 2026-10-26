@@ -6,7 +6,7 @@ import * as v from "valibot";
 import { getDb } from "../db";
 import { block, follow, report } from "../db/schema";
 import type { AppEnv } from "../env";
-import { requireAuth } from "../middleware";
+import { requireAuth, requireSetup } from "../middleware";
 import { validator } from "../validator";
 
 const targetSchema = v.object({ targetUserId: v.pipe(v.string(), v.minLength(1)) });
@@ -20,7 +20,7 @@ const targetSchema = v.object({ targetUserId: v.pipe(v.string(), v.minLength(1))
  */
 export const socialRoute = new Hono<AppEnv>()
   /** フォローする。follow.followingId = フォローする側 = 自分 */
-  .post("/follow", requireAuth, validator("json", targetSchema), async (c) => {
+  .post("/follow", requireAuth, requireSetup, validator("json", targetSchema), async (c) => {
     const me = c.get("user").id;
     const { targetUserId } = c.req.valid("json");
 

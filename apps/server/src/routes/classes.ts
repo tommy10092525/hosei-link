@@ -15,7 +15,7 @@ import {
   user,
 } from "../db/schema";
 import type { AppEnv } from "../env";
-import { requireAuth } from "../middleware";
+import { requireAuth, requireSetup } from "../middleware";
 import { int, validator } from "../validator";
 
 const PAGE_SIZE = 50;
@@ -223,6 +223,7 @@ export const classesRoute = new Hono<AppEnv>()
   .post(
     "/:id/messages",
     requireAuth,
+    requireSetup,
     validator("json", v.object({ text: v.pipe(v.string(), v.minLength(1), v.maxLength(10000)) })),
     async (c) => {
       const me = c.get("user").id;
@@ -290,6 +291,7 @@ export const classesRoute = new Hono<AppEnv>()
   .post(
     "/:id/reviews",
     requireAuth,
+    requireSetup,
     validator(
       "json",
       v.object({

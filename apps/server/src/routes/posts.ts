@@ -7,7 +7,7 @@ import * as v from "valibot";
 import { getDb } from "../db";
 import { block, follow, post, postImage, reaction, user } from "../db/schema";
 import type { AppEnv } from "../env";
-import { requireAuth } from "../middleware";
+import { requireAuth, requireSetup } from "../middleware";
 import { int, validator } from "../validator";
 import { deleteImages } from "../storage";
 
@@ -147,6 +147,7 @@ export const postsRoute = new Hono<AppEnv>()
   .post(
     "/",
     requireAuth,
+    requireSetup,
     validator(
       "json",
       v.object({
@@ -314,6 +315,7 @@ export const postsRoute = new Hono<AppEnv>()
   .post(
     "/:id/reaction",
     requireAuth,
+    requireSetup,
     async (c) => {
       const me = c.get("user").id;
       const postId = c.req.param("id");

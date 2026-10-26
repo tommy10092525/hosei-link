@@ -5,7 +5,7 @@ import * as v from "valibot";
 import { getDb } from "../db";
 import { classMessage, classSlot, classes, register, user } from "../db/schema";
 import type { AppEnv } from "../env";
-import { requireAuth } from "../middleware";
+import { requireAuth, requireSetup } from "../middleware";
 import { validator } from "../validator";
 
 /**
@@ -63,6 +63,7 @@ export const scheduleRoute = new Hono<AppEnv>()
   .post(
     "/registers",
     requireAuth,
+    requireSetup,
     validator("json", v.object({ classId: v.pipe(v.string(), v.minLength(1)) })),
     async (c) => {
       const me = c.get("user").id;

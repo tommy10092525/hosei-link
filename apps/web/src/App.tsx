@@ -29,9 +29,9 @@ export function App() {
     <Routes>
       <Route path="/" element={<Landing />} />
 
-      {/* ログイン必須。初回セットアップ未完了なら /setup に足止めされる */}
+      {/* ログイン必須。初回セットアップ前でも閲覧はできる (書き込み時に /setup へ誘導) */}
       <Route element={<ProtectedLayout />}>
-        {/* セットアップ中は共通ヘッダーを出さない (他の画面へ行けてしまうため) */}
+        {/* セットアップ画面は入力に集中させたいので共通ヘッダーを出さない */}
         <Route path="/setup" element={<ProfileSetup />} />
 
         <Route element={<AppLayout />}>

@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useDebounced } from "@/hooks/useDebounced";
+import { useSetupGuard } from "@/hooks/useSetupGuard";
 import { useRelations, useToggleFollow, useUserSearch } from "@/hooks/useSocial";
 import { displayName } from "@/lib/format";
 
@@ -53,6 +54,7 @@ export const Friends = () => {
   const search = useUserSearch(debouncedQuery);
   const relations = useRelations();
   const toggleFollow = useToggleFollow();
+  const { guard } = useSetupGuard();
 
   return (
     <>
@@ -102,6 +104,7 @@ export const Friends = () => {
                           size="sm"
                           variant={person.isFollowing ? "outline" : "ink"}
                           onClick={() =>
+                            (person.isFollowing || guard()) &&
                             toggleFollow.mutate(
                               {
                                 targetUserId: person.id,

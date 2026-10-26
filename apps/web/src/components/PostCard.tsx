@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { useDeletePost, useToggleReaction } from "@/hooks/usePosts";
+import { useSetupGuard } from "@/hooks/useSetupGuard";
 import { displayName, imageUrl, timeAgo } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
@@ -56,6 +57,7 @@ type Props = {
 
 export const PostCard = ({ post, detailed = false }: Props) => {
   const toggleReaction = useToggleReaction();
+  const { guard } = useSetupGuard();
   const deletePost = useDeletePost();
 
   const affiliation = `${post.author.department ?? ""}${post.author.major ?? ""}`;
@@ -118,6 +120,7 @@ export const PostCard = ({ post, detailed = false }: Props) => {
           aria-pressed={post.isReacted}
           className={cn("px-3", post.isReacted ? "text-brand-strong" : "text-muted-foreground")}
           onClick={() =>
+            guard() &&
             toggleReaction.mutate(post.id, {
               onError: (e) => toast.error(e.message),
             })
